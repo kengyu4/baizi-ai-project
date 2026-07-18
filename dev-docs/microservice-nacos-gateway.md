@@ -162,7 +162,7 @@ xiaorong-gateway
 ### 3. 启动前端
 
 ```bash
-cd C:\Users\27695\Desktop\文件\测试2\frontend\Forhaed
+cd C:\Users\27695\Desktop\文件\测试2\frontend
 npm run dev -- --host 127.0.0.1 --port 5173
 ```
 

@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
+// AI 提供商注册器
 @Component
 public class AiProviderRegistry {
     private final Map<String, XiaorongProperties.Provider> providers = new ConcurrentHashMap<>();

@@ -15,6 +15,7 @@ public class XiaorongProperties {
     private final Auth auth = new Auth();
     private final Rabbitmq rabbitmq = new Rabbitmq();
     private final Ai ai = new Ai();
+    private final Interview interview = new Interview();
 
     public Long getMockUserId() {
         return mockUserId;
@@ -54,6 +55,10 @@ public class XiaorongProperties {
 
     public Ai getAi() {
         return ai;
+    }
+
+    public Interview getInterview() {
+        return interview;
     }
 
     public static class Study {
@@ -203,6 +208,80 @@ public class XiaorongProperties {
 
         public void setLessonMaterialRoutingKey(String lessonMaterialRoutingKey) {
             this.lessonMaterialRoutingKey = lessonMaterialRoutingKey;
+        }
+    }
+
+    public static class Interview {
+        private final Ocr ocr = new Ocr();
+
+        public Ocr getOcr() {
+            return ocr;
+        }
+    }
+
+    public static class Ocr {
+        private boolean enabled;
+        private String provider = "baidu";
+        private String apiKey;
+        private String secretKey;
+        private String endpoint = "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic";
+        private int maxPages = 5;
+        private int dpi = 200;
+
+        public boolean isEnabled() {
+            return enabled;
+        }
+
+        public void setEnabled(boolean enabled) {
+            this.enabled = enabled;
+        }
+
+        public String getProvider() {
+            return provider;
+        }
+
+        public void setProvider(String provider) {
+            this.provider = provider;
+        }
+
+        public String getApiKey() {
+            return apiKey;
+        }
+
+        public void setApiKey(String apiKey) {
+            this.apiKey = apiKey;
+        }
+
+        public String getSecretKey() {
+            return secretKey;
+        }
+
+        public void setSecretKey(String secretKey) {
+            this.secretKey = secretKey;
+        }
+
+        public String getEndpoint() {
+            return endpoint;
+        }
+
+        public void setEndpoint(String endpoint) {
+            this.endpoint = endpoint;
+        }
+
+        public int getMaxPages() {
+            return maxPages;
+        }
+
+        public void setMaxPages(int maxPages) {
+            this.maxPages = Math.max(1, maxPages);
+        }
+
+        public int getDpi() {
+            return dpi;
+        }
+
+        public void setDpi(int dpi) {
+            this.dpi = Math.max(72, dpi);
         }
     }
 

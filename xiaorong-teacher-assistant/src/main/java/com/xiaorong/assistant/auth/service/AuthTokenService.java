@@ -15,6 +15,7 @@ import java.time.Duration;
 import java.util.Base64;
 import java.util.Optional;
 
+// 认证令牌服务
 @Service
 public class AuthTokenService {
     private static final SecureRandom SECURE_RANDOM = new SecureRandom();

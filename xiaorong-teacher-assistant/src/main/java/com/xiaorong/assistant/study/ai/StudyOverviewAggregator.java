@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+// 学习概览聚合器
 @Component
 public class StudyOverviewAggregator {
     public Overview aggregate(List<List<String>> missedKeywordGroups, int completedCount) {

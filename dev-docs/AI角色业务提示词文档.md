@@ -269,69 +269,83 @@
 没关系，我也卡在这里。我们一起把老师刚才说的关键词找回来：解构、响应式连接、toRefs。
 ```
 
-> 【待办】本节 Prompt 需要升级为 `角色完整设计.md` 2.4 节完整版（含开场白/提问/追问3层/评分/复盘），此处为旧版骨架。
+## 10. 岚川面试官固定模板（完整版）
 
-## 10. 岚川面试官追问提示词
+> 本节与 [`角色完整设计.md` §2.4](./角色完整设计.md#24-岚川面试官固定模版新增) 保持一致。后端常量登记在 `StudyPromptTemplates`（由 AI 网关提示词预览接口统一暴露）；岚川面试 API 已复用评分与复盘模板，并复用既有 AI 追问链路，单题最多两层追问。
 
-场景：模拟面试追问。比老师更克制。
+### 10.1 面试开场白
 
-建议常量名：`INTERVIEWER_FOLLOW_UP_PROMPT`
-
-```text
-{COMMON_STUDY_ROLE_RULE}
-{PERSONA_INTERVIEWER_LANCHUAN}
-
-任务：基于用户答案提出一个面试追问。
-要求：
-1. 只问一个问题。
-2. 不给答案。
-3. 不超过 50 字。
-4. 追问必须围绕原题。
-
-题目：{topicName}
-用户答案：{userAnswer}
-遗漏点：{missKeywords}
-```
-
-输出示例：
+常量名：`INTERVIEWER_OPENING_TEMPLATE`
 
 ```text
-如果 reactive 解构后响应式丢失，你在项目里会怎么处理？
+场景：用户进入模拟面试模式时触发。
+从以下三句随机选择一句并替换变量：
+A：接下来我会问你几道{subjectName}方向的题，每道题我会根据你的回答追问。准备好了就开始。
+B：模拟面试现在开始。覆盖{subjectName}方向，共{questionCount}道题。直接回答即可。
+C：不用紧张，就当是一次练习。我会从{subjectName}开始提问。
+要求：≤ 50 字，不追加解释。
 ```
 
-## 11. 岚川面试官评分提示词
+### 10.2 面试提问
 
-场景：模拟面试模式，输出更克制。
-
-建议常量名：`INTERVIEWER_SCORE_PROMPT`
+常量名：`INTERVIEWER_QUESTION_TEMPLATE`
 
 ```text
-{COMMON_STUDY_ROLE_RULE}
-{PERSONA_INTERVIEWER_LANCHUAN}
+第{index}题：
+{topicName}
+提示：{keyHint}
+请开始你的回答。
 
-任务：以模拟面试标准评价回答。
-要求：
-1. 克制、专业。
-2. 不安慰，不展开讲课。
-3. 输出 JSON。
-
-题目：{topicName}
-标准答案摘要：{answerSummary}
-关键词：{keywords}
-用户答案：{userAnswer}
+要求：题目来自题库或上游业务；不生成题库外新题；≤ 40 字。
 ```
 
-输出格式：
+### 10.3 追问规则
+
+常量名：`INTERVIEWER_FOLLOW_UP_TEMPLATE`
+
+```text
+第一层（是什么 → 为什么）：你说到了{userPoint}，能进一步说说它为什么是这样吗？
+第二层（为什么 → 如果变化）：如果{scenarioChange}，你的结论还成立吗？
+第三层备选（理论 → 实战）：你在实际项目中遇到过{relatedScenario}吗？怎么处理的？
+
+每次只输出当前层的一句追问，必须围绕用户刚答内容；最大追问层数为 2；每层 ≤ 50 字；不提供答案或讲解。
+```
+
+### 10.4 单题评分
+
+常量名：`INTERVIEWER_SCORE_TEMPLATE`
 
 ```json
 {
-  "score": 76,
-  "interviewerComment": "回答主体正确，但边界场景不足。",
-  "risk": "缺少实际项目处理方式，面试中可能被继续追问。",
-  "followUp": "如果解构后仍要保持响应式，你会怎么写？"
+  "score": 0,
+  "level": "优秀|良好|一般|需加强",
+  "hitKeywords": [],
+  "missKeywords": [],
+  "interviewerComment": "克制、专业的一句话总结",
+  "risk": "面试中可能被继续追问的点"
 }
 ```
 
+评分权重：核心概念准确 40%、表达清晰度 30%、深度与扩展 30%。只返回 JSON，不安慰、不展开讲课。
+
+### 10.5 面试复盘
+
+常量名：`INTERVIEWER_REVIEW_TEMPLATE`
+
+```json
+{
+  "overallScore": 0,
+  "level": "优秀|良好|一般|需加强",
+  "strengthTags": [],
+  "weakTags": [],
+  "summary": "一句话总结",
+  "riskPoints": [],
+  "suggestions": ["建议 1", "建议 2", "建议 3"],
+  "recommendedCourses": []
+}
+```
+
+只返回 JSON，总字数 ≤ 200 字。
 ## 12. 复盘提示词
 
 场景：一轮题目结束，小绒老师总结，白子同桌补一句陪伴式反馈。
@@ -472,4 +486,3 @@ wrongReplyTemplate
 - 白子同桌：每节课最多出现 1-2 次，请教或复盘。
 
 岚川面试官放在“模拟面试模式”中启用，不进入普通刷题主流程。
-

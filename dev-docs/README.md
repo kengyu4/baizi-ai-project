@@ -2,7 +2,7 @@
 
 > 本项目所有开发文档已统一归档到此目录（`dev-docs/`）。
 > 本文档串联所有文档，方便项目对接和新人上手。
-> 个人 API Key 安全配置与可见 AI 学习链路已于 2026-07-16 完成落地：按用户 AES-GCM 加密、Secret 缺失偏好容错、可信 Provider/动态模型切换、课堂 SSE、低分讲评和个性化建议均已实现；面试官完整业务 4.3 暂缓。
+> 个人 API Key 安全配置与可见 AI 学习链路已完成落地；岚川面试官的角色选择、文本简历、OCR、**自我介绍先行的自由面试、每题两层追问**、评分复盘与 MySQL/内存持久化已于 2026-07-18 接入。
 
 ---
 
@@ -33,11 +33,12 @@
 | 21 | [自由对话与薄弱点概览实施计划](./2026-07-16-free-conversation-implementation-plan.md) | 本文档 | 实施计划 |
 | 22 | [可见 AI 课堂接入修正设计](./2026-07-16-visible-ai-integration-design.md) | 本文档 | AI 架构 |
 | 23 | [可见 AI 课堂接入实施计划](./2026-07-16-visible-ai-integration-implementation-plan.md) | 本文档 | 实施计划 |
+| 24 | [岚川面试官 API 文档](./岚川面试官API文档.md) | 本文档 | API 文档 |
 
 > **未搬运的关联文件**（仍在原位置，仅供参考）：
 > - `xiaorong-teacher-assistant/docs/mysql-schema.sql` — MySQL 建表 SQL
 > - `xiaorong-teacher-assistant/docs/schema-draft.sql` — Schema 草稿（未使用）
-> - `frontend/Forhaed/README.md` — Frontend 前端项目搭建说明（通用 Vite 模板）
+> - `frontend/README.md` — Frontend 前端项目搭建说明（通用 Vite 模板）
 
 ---
 
@@ -246,14 +247,14 @@ xiaorong-teacher-assistant-README.md
 │   ├── 2026-07-16-free-conversation-implementation-plan.md
 │   ├── 2026-07-16-visible-ai-integration-design.md
 │   ├── 2026-07-16-visible-ai-integration-implementation-plan.md
+│   ├── 岚川面试官API文档.md
 │   └── 待做任务清单.md
 ├── interactive-quiz-demo/             ← 静态 Demo（仅含 index.html）
 ├── xiaorong-teacher-assistant/        ← 后端项目
 │   └── docs/
 │       ├── mysql-schema.sql           ← MySQL 建表文件
 │       └── schema-draft.sql           ← Schema 草稿（未使用）
-└── frontend/                           ← 前端项目
-    └── Forhaed/
+└── frontend/                           ← Vue 前端项目
 ```
 
 ---
@@ -274,5 +275,6 @@ xiaorong-teacher-assistant-README.md
 | 了解角色资产缺口和改进计划 | [角色资产与功能改进计划](./角色资产与功能改进计划.md) |
 | 查看完整角色生图 Prompt + 面试官模版 + 自由对话规划 | [角色完整设计](./角色完整设计.md) |
 | 查看所有待做任务清单（按优先级分类） | [待做任务清单](./待做任务清单.md) |
+| 对接岚川面试官、简历解析和记录接口 | [岚川面试官 API 文档](./岚川面试官API文档.md) |
 | 配置个人 API Key 并切换模型 | [用户 API Key 与模型切换安全设计](./2026-07-15-user-api-key-model-security-design.md) |
 | 实现自由对话、深度讲评和用户薄弱点 | [自由对话与用户薄弱点概览设计](./2026-07-16-free-conversation-design.md) → [可见 AI 修正设计](./2026-07-16-visible-ai-integration-design.md) → [实施计划](./2026-07-16-visible-ai-integration-implementation-plan.md) |

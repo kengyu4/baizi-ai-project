@@ -4,7 +4,7 @@ import com.xiaorong.assistant.auth.exception.UnauthorizedException;
 import com.xiaorong.assistant.auth.model.AuthSession;
 
 import java.util.Optional;
-
+// 认证上下文
 public final class AuthContext {
     private static final ThreadLocal<AuthSession> CURRENT = new ThreadLocal<>();
 

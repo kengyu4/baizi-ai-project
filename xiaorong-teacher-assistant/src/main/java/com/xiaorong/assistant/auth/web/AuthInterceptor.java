@@ -14,7 +14,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.io.IOException;
 import java.util.Optional;
-
+// 认证拦截器
 @Component
 public class AuthInterceptor implements HandlerInterceptor {
     private final AuthTokenService tokenService;

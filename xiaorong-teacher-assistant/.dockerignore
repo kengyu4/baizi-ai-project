@@ -1,5 +1,4 @@
-# target/ 不再忽略：Dockerfile 直接拷贝宿主机已构建好的 jar
-.mvn/wrapper/maven-wrapper.jar
+target/
 .git/
 .idea/
 .vscode/
@@ -7,3 +6,5 @@
 *.log
 src/main/resources/application-secret.yml
 docker-data/
+.env
+.env.*

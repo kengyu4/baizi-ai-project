@@ -164,7 +164,7 @@ public class MockStudyService implements StudyService {
         return new AskResponse(answer.answer(), answer.relatedKeywords(), answer.degraded(),
                 answer.providerCode(), answer.model());
     }
-
+// AI 会话流式 API
     @Override
     public SseEmitter askStream(Long sessionId, AskRequest request) {
         StudySessionState state = state(sessionId);

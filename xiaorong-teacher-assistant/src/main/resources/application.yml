@@ -6,6 +6,10 @@ spring:
     import: optional:file:./src/main/resources/application-secret.yml
   application:
     name: xiaorong-teacher-assistant
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
@@ -51,6 +55,15 @@ xiaorong:
     lesson-material-exchange: xiaorong.ai.direct
     lesson-material-queue: xiaorong.ai.lesson-material.generate
     lesson-material-routing-key: GENERATE_LESSON_MATERIAL
+  interview:
+    ocr:
+      enabled: ${XIAORONG_INTERVIEW_OCR_ENABLED:false}
+      provider: baidu
+      api-key: ${BAIDU_OCR_API_KEY:}
+      secret-key: ${BAIDU_OCR_SECRET_KEY:}
+      endpoint: https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic
+      max-pages: 5
+      dpi: 200
   ai:
     real-enabled: false
     default-provider-code: bailian

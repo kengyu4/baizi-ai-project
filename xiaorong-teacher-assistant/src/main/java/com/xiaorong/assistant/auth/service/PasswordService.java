@@ -4,6 +4,7 @@ import com.xiaorong.assistant.config.XiaorongProperties;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+// 密码服务
 @Service
 public class PasswordService {
     private final BCryptPasswordEncoder encoder;

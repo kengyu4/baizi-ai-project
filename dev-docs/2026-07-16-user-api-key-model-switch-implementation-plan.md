@@ -44,13 +44,13 @@
 
 ### 前端新增/修改
 
-- `frontend/Forhaed/src/api/admin.ts`：用户 AI 设置 API。
-- `frontend/Forhaed/src/api/types.ts`：用户设置、模型、测试 DTO。
-- `frontend/Forhaed/src/api/legacyApiKeyCleanup.ts`：仅负责删除旧存储。
-- `frontend/Forhaed/src/api/legacyApiKeyCleanup.test.ts`：Node 22 单元测试。
-- `frontend/Forhaed/src/views/RuntimeStatusView.vue`：正式配置 UI。
-- `frontend/Forhaed/src/main.ts`、`src/router/index.ts`、`src/components/RuntimeBadge.vue`：删除 helper 引入。
-- 删除 `frontend/Forhaed/src/apikey-runtime-helper.js`。
+- `frontend/src/api/admin.ts`：用户 AI 设置 API。
+- `frontend/src/api/types.ts`：用户设置、模型、测试 DTO。
+- `frontend/src/api/legacyApiKeyCleanup.ts`：仅负责删除旧存储。
+- `frontend/src/api/legacyApiKeyCleanup.test.ts`：Node 22 单元测试。
+- `frontend/src/views/RuntimeStatusView.vue`：正式配置 UI。
+- `frontend/src/main.ts`、`src/router/index.ts`、`src/components/RuntimeBadge.vue`：删除 helper 引入。
+- 删除 `frontend/src/apikey-runtime-helper.js`。
 
 ### 文档修改
 
@@ -370,11 +370,11 @@ mvn -q -DskipTests compile
 ### Task 6: 前端旧 Key 清理与 API 类型
 
 **Files:**
-- Create: `frontend/Forhaed/src/api/legacyApiKeyCleanup.test.ts`
-- Create: `frontend/Forhaed/src/api/legacyApiKeyCleanup.ts`
-- Modify: `frontend/Forhaed/src/api/types.ts`
-- Modify: `frontend/Forhaed/src/api/admin.ts`
-- Modify: `frontend/Forhaed/package.json`
+- Create: `frontend/src/api/legacyApiKeyCleanup.test.ts`
+- Create: `frontend/src/api/legacyApiKeyCleanup.ts`
+- Modify: `frontend/src/api/types.ts`
+- Modify: `frontend/src/api/admin.ts`
+- Modify: `frontend/package.json`
 
 - [x] **Step 1: 写失败测试**
 
@@ -428,11 +428,11 @@ npm run type-check
 ### Task 7: Runtime Vue 页面
 
 **Files:**
-- Modify: `frontend/Forhaed/src/views/RuntimeStatusView.vue`
-- Modify: `frontend/Forhaed/src/main.ts`
-- Modify: `frontend/Forhaed/src/router/index.ts`
-- Modify: `frontend/Forhaed/src/components/RuntimeBadge.vue`
-- Delete: `frontend/Forhaed/src/apikey-runtime-helper.js`
+- Modify: `frontend/src/views/RuntimeStatusView.vue`
+- Modify: `frontend/src/main.ts`
+- Modify: `frontend/src/router/index.ts`
+- Modify: `frontend/src/components/RuntimeBadge.vue`
+- Delete: `frontend/src/apikey-runtime-helper.js`
 
 - [x] **Step 1: 移除 helper 引入并调用安全清理**
 
@@ -525,7 +525,7 @@ npm run build
 - [x] **Step 6: 安全扫描**
 
 ```powershell
-Get-ChildItem -Recurse -File frontend\Forhaed\src,xiaorong-teacher-assistant\src\main | Select-String -Pattern 'localStorage.setItem.*api|apiKey.*println|Authorization.*println'
+Get-ChildItem -Recurse -File frontend\src,xiaorong-teacher-assistant\src\main | Select-String -Pattern 'localStorage.setItem.*api|apiKey.*println|Authorization.*println'
 ```
 
 预期：无明文 Key 持久化或日志输出。

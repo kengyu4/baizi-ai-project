@@ -3,6 +3,7 @@ package com.xiaorong.assistant.study.ai;
 import com.xiaorong.assistant.ai.dto.AiDtos.AiChatRequest;
 import com.xiaorong.assistant.ai.dto.AiDtos.AiChatResponse;
 import com.xiaorong.assistant.ai.dto.AiDtos.AiMessage;
+import com.xiaorong.assistant.ai.prompt.StudyPromptTemplates;
 import com.xiaorong.assistant.ai.service.AiGatewayService;
 import com.xiaorong.assistant.ai.service.AiGatewayService.AiStreamListener;
 import com.xiaorong.assistant.ai.text.AiAnswerSanitizer;
@@ -194,7 +195,11 @@ public class StudyAiConversationService {
 
     public String interviewFollowUp(long userId, String topic, String answer, List<String> expected, int depth) {
         List<AiMessage> messages = List.of(
-                new AiMessage("system", "你是技术面试官。只生成一个简短追问，不超过50字；无需追问时仅返回 NO_FOLLOW_UP。"),
+                new AiMessage("system", StudyPromptTemplates.INTERVIEWER_SYSTEM_RULE + """
+                        场景：针对候选人刚刚的回答进行一层追问，问题不超过 50 字。
+                        只输出一个具体追问；如果没有必要追问，只输出 NO_FOLLOW_UP。
+                        最大追问层数为 2；优先核验个人贡献、技术取舍、问题处理和最终结果。
+                        """),
                 new AiMessage("user", "题目：" + topic + "\n候选人回答：" + answer
                         + "\n期望关键词：" + String.join("、", safeList(expected))
                         + "\n追问层级：" + depth));

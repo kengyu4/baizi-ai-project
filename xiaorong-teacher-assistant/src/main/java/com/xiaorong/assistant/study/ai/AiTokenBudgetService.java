@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
+// AI 令牌预算服务
 @Service
 public class AiTokenBudgetService {
     private static final Logger log = LoggerFactory.getLogger(AiTokenBudgetService.class);

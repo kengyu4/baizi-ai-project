@@ -2,7 +2,7 @@
 
 > 日期：2026-07-15  
 > 状态：已确认  
-> 适用项目：`xiaorong-teacher-assistant`、`frontend/Forhaed`
+> 适用项目：`xiaorong-teacher-assistant`、`frontend`
 
 ## 1. 背景
 

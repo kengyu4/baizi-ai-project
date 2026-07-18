@@ -55,7 +55,7 @@ mvn spring-boot:run
 **4. 前端**
 
 ```powershell
-# 在 frontend\Forhaed 目录下
+# 在 frontend 目录下
 npm run dev
 ```
 
@@ -161,7 +161,7 @@ curl.exe http://localhost:8090/api/auth/me
 **6. 前端**
 
 ```powershell
-# 在 frontend\Forhaed 目录下
+# 在 frontend 目录下
 
 # PowerShell
 $env:VITE_API_BASE_URL='http://localhost:8090'; npm run dev
@@ -215,7 +215,7 @@ cd xiaorong-teacher-assistant\xiaorong-gateway
 java -jar target\xiaorong-gateway-0.0.1-SNAPSHOT.jar
 
 # 4. 重新启动前端，设置环境变量走网关
-cd ..\frontend\Forhaed
+cd ..\frontend
 $env:VITE_API_BASE_URL='http://localhost:8090'; npm run dev
 ```
 
@@ -229,7 +229,7 @@ Remove-Item Env:SPRING_CLOUD_NACOS_CONFIG_ENABLED -ErrorAction SilentlyContinue
 java -jar target\xiaorong-teacher-assistant-0.0.1-SNAPSHOT.jar
 
 # 3. 重新启动前端，不设环境变量
-cd ..\frontend\Forhaed
+cd ..\frontend
 npm run dev   # 默认走 8088
 ```
 
@@ -252,4 +252,4 @@ npm run dev   # 默认走 8088
 
 6. **RabbitMQ 现在也属于业务服务依赖**。后台课程材料生成接口会先投递 `GENERATE_LESSON_MATERIAL`，再由业务服务内监听器消费并写入 `ai_lesson_material` / Redis。
 
-7. **前端 Docker 构建上下文是 `frontend/Forhaed`**。生产构建只会复制该目录内的文件，`src/` 中的运行时辅助脚本导入必须指向前端项目内文件，不能回退到仓库根目录，否则容器内 `npm run build` 会出现 `UNRESOLVED_IMPORT`。
+7. **前端 Docker 构建上下文是 `frontend`**。生产构建只会复制该目录内的文件，`src/` 中的运行时辅助脚本导入必须指向前端项目内文件，不能回退到仓库根目录，否则容器内 `npm run build` 会出现 `UNRESOLVED_IMPORT`。

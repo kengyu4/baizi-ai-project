@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+// 认证服务
 @Service
 public class AuthService {
     private final AuthJdbcRepository repository;

@@ -1,7 +1,7 @@
 services:
   frontend:
     build:
-      context: ../frontend/Forhaed
+      context: ../frontend
     container_name: xiaorong-frontend
     depends_on:
       - app
@@ -86,6 +86,9 @@ services:
       DASHSCOPE_API_KEY: ${DASHSCOPE_API_KEY:-}
       DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
       ONEAPI_API_KEY: ${ONEAPI_API_KEY:-}
+      BAIDU_OCR_API_KEY: ${BAIDU_OCR_API_KEY:-}
+      BAIDU_OCR_SECRET_KEY: ${BAIDU_OCR_SECRET_KEY:-}
+      XIAORONG_INTERVIEW_OCR_ENABLED: ${XIAORONG_INTERVIEW_OCR_ENABLED:-false}
       XIAORONG_PERSISTENCE_ENABLED: "true"
       XIAORONG_CACHE_ENABLED: "true"
       XIAORONG_STUDY_TEMPLATE_PATH: /templates/后端题目固定互动模版（小绒老师+白子同桌）.md

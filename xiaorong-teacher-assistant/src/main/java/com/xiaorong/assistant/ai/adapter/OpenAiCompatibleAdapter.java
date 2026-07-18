@@ -96,6 +96,7 @@ public class OpenAiCompatibleAdapter implements AiProviderAdapter {
      * Uses the provider's OpenAI-compatible Server-Sent Events endpoint. Each valid `data:` frame is forwarded
      * as soon as it is received; the complete answer is never buffered before the first client delta is sent.
      */
+    // 流式 API
     @Override
     public void stream(AiChatRequest request, XiaorongProperties.Provider provider, AiStreamListener listener) {
         requireApiKey(provider);
@@ -135,6 +136,7 @@ public class OpenAiCompatibleAdapter implements AiProviderAdapter {
                 .toList();
     }
 
+    // 流式 API 实现
     private void streamUpstream(AiChatRequest request, XiaorongProperties.Provider provider, String selectedModel,
                                 AiStreamListener listener) {
         long startedAt = System.currentTimeMillis();
